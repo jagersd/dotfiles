@@ -1,0 +1,12 @@
+gnome.gtk.theme:Material-Black-Mango-4.0
+rofi.theme:.config/regolith/muumin.rasi
+gnome.icon.theme:Numix-Circle
+rofi.icon-theme:Numix-Cirle
+rofi.font:Fira Sans Regular 14
+rofi.display-drun:"Applications"
+
+#COLORS
+i3-wm.client.focused.color.child_border:#F7A225
+i3-wm.client.focused.color.indicator:#061D29	
+
+	
