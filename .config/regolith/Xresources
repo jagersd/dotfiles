@@ -1,12 +1,51 @@
+
 gnome.gtk.theme:Material-Black-Mango-4.0
-rofi.theme:.config/regolith/muumin.rasi
+gnome.wallpaper:~/.config/regolith/themes/muumin/muumin-bg.jpg
 gnome.icon.theme:Numix-Circle
+
+#ROFI
+rofi.theme:~/.config/regolith/themes/muumin/muumin.rasi
 rofi.icon-theme:Numix-Cirle
 rofi.font:Fira Sans Regular 14
 rofi.display-drun:"Applications"
 
-#COLORS
+#WINDOWCOLORS
 i3-wm.client.focused.color.child_border:#F7A225
-i3-wm.client.focused.color.indicator:#061D29	
+i3-wm.client.focused.color.indicator:#00000000
+i3-wm.window.border.size:2
 
-	
+#I3-bar
+i3-wm.bar.position:top
+i3-wm.bar.background.color:#00000000
+i3-wm.bar.separator.color:#F7A225
+i3-wm.bar.font:pango:Source Code Pro Medium 11, FontAwesome 11
+i3xrocks.value.font: Fira Sans Regular 11
+
+i3-wm.bar.workspace.focused.background.color:#F7A225
+i3-wm.bar.workspace.focused.text.color: #00000000
+i3-wm.bar.workspace.focused.border.color: #F7A225
+
+i3-wm.bar.workspace.active.background.color:#00000000
+i3-wm.bar.workspace.active.text.color:#FFFFFF
+i3-wm.bar.workspace.active.border.color:#00000000
+
+i3-wm.bar.workspace.inactive.background.color:#00000000
+i3-wm.bar.workspace.inactive.text.color:#FFFFFF
+i3-wm.bar.workspace.inactive.border.color:#00000000
+
+i3xrocks.label.color:#FFFFFF
+i3xrocks.value.color:#FFFFFF
+
+i3xrocks.label.battery:
+i3xrocks.label.battery20:
+i3xrocks.label.battery50:
+i3xrocks.label.battery80:
+i3xrocks.label.battery100:
+
+i3xrocks.label.batteryac:
+i3xrocks.label.batterycharging:
+i3xrocks.label.batteryunknown:
+
+i3xrocks.label.mute:
+i3xrocks.label.sound:
+
