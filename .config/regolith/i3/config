@@ -199,7 +199,7 @@ bindsym $mod+$i3-wm.binding.ws_prev2 workspace prev
 bindsym Ctrl+$alt+Left workspace prev_on_output
 
 ## Navigate // Previous Workspace on Output // <Alt><Ctrl> h ##
-bindsym Ctrl+$alt+h prev_on_output
+bindsym Ctrl+$alt+h workspace  prev_on_output
 
 ## Navigate // Next Free Workspace // <><shift> Enter ##
 set_from_resource $i3-wm.binding.next_free i3-wm.binding.next_free Shift+Return
