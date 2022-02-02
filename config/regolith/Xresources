@@ -1,0 +1,17 @@
+!GTK
+gnome.gtk.theme:Material-Black-Mango-4.0
+gnome.wallpaper:~/.config/regolith/themes/muumin/muumin-bg.jpg
+gnome.icon.theme:Numix-Circle
+
+!ROFI
+rofi.theme:~/.config/regolith/themes/muumin/muumin.rasi
+rofi.icon-theme:Numix-Cirle
+rofi.font:Fira Sans Regular 14
+rofi.display-drun:Applications
+
+!WINDOWCOLORS
+i3-wm.client.focused.color.child_border:#F7A225
+i3-wm.client.focused.color.indicator:#00000000
+i3-wm.window.border.size:2
+
+i3-wm.font:Fira Sans Book 10
