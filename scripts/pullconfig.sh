@@ -20,3 +20,8 @@ for dir in ${CONFIGDIRS[@]}; do
 done
 
 echo "dotfile sync complete"
+
+#vsCode
+mkdir -p ../config/Code;
+cp $HOME/.config/Code/User/settings.json ../config/Code;
+echo "vscode settings stored"
