@@ -1,0 +1,17 @@
+!GTK
+gnome.gtk.theme:Nordic-v40
+gnome.wallpaper:~/.config/regolith/bg.jpg
+gnome.icon.theme:Zafiro-Icons-Dark
+
+!ROFI
+rofi.theme:~/.config/regolith/rofi.rasi
+rofi.icon-theme:Zafiro-Icons-Dark
+rofi.font:Fira Sans Regular 14
+rofi.display-drun:Applications
+
+!WINDOWCOLORS
+i3-wm.client.focused.color.child_border:#8FBCBB
+i3-wm.client.focused.color.indicator:#88C0D0
+i3-wm.window.border.size:2
+
+i3-wm.font:Fira Sans Book 10
