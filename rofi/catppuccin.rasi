@@ -16,7 +16,7 @@ configuration{
 * {
     bg-col:  #1E1D2F;
     bg-col-light: #1E1D2F;
-    border-col: #1E1D2F;
+    border-col: #C9CBFF;
     selected-col: #1E1D2F;
     blue: #7aa2f7;
     fg-col: #D9E0EE;
@@ -33,6 +33,7 @@ element-text, element-icon , mode-switcher {
 window {
     height: 360px;
     border: 3px;
+    border-radius: 15px;
     border-color: @border-col;
     background-color: @bg-col;
 }

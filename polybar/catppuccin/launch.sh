@@ -13,11 +13,11 @@ MONITORPRIMARY="$(xrandr --query | grep " primary" | cut -d" " -f1)";
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
     if [ "$MONITORPRIMARY" = "$m" ]; then
-        MONITOR=$m polybar --reload catppuccin &
+        MONITOR=$m polybar --config=~/.config/polybar/catppuccin/config  --reload catppuccin &
     else
-        MONITOR=$m polybar --reload others &
+        MONITOR=$m polybar --config=~/.config/polybar/catppuccin/config  --reload others &
     fi
   done
 else
-  polybar --reload catppuccin &
+  polybar --config=~/.config/polybar/catppuccin/config --reload catppuccin &
 fi
