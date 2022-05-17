@@ -1,0 +1,32 @@
+###
+# touchpad
+###
+
+Following configuration added to /usr/share/X11/xorg.conf.d/90-touchpad.conf
+"
+Section "InputClass"
+        Identifier "touchpad"
+        MatchIsTouchpad "on"
+        Driver "libinput"
+        Option "Tapping" "on"
+	Option "NaturalScrolling" "on"
+EndSection
+"
+
+###
+# screen brightness
+###
+
+installed brightnessctl from repo through apt
+
+###
+# Bluetooth
+###
+
+Bluetooth interface managed by blueman-manager installed from repo through apt
+
+###
+# xrandr mobile / docked
+###
+
+xrandr settings manager by autorandr installed from repo through apt

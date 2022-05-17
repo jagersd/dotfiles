@@ -1,6 +1,6 @@
 configuration{
     modi: "run,drun,window";
-    font: "JetBrainsMono Nerd Font 14";
+    font: "JetBrains Mono 14";
     show-icons: true;
     icon-theme: "Oranchelo";
     terminal: "st";
