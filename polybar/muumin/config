@@ -31,7 +31,7 @@
 [colors]
 ;background = ${xrdb:color0:#222}
 background = #aa000000
-background-alt = #444
+background-alt = #aa000000
 ;foreground = ${xrdb:color7:#222}
 foreground = #f1a979
 foreground-alt = #9ab4ab
@@ -274,12 +274,19 @@ label = %date% %time%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume>
-label-volume =  %percentage%%
-label-volume-foreground = ${colors.foreground-alt}
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
+
+ramp-volume-0 = " "  
+ramp-volume-1 = " "
+ramp-volume-2 = " "
+ramp-volume-foreground = ${colors.foreground-alt}
+
+click-right = pavucontrol
 
 label-muted =  muted
-label-muted-foreground = #666
+label-muted-foreground = #ff5555
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -333,7 +340,7 @@ adapter = AC
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+;format-charging-underline = #ffb52a
 
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
