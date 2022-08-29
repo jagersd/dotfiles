@@ -41,9 +41,6 @@ prep_rofi.stdout.close()
 
 chosen_theme = choice.communicate()[0].strip()
 
-print(current_theme)
-print(chosen_theme)
-
 options = ["yes","no"]
 options = "\n".join(options)
 
