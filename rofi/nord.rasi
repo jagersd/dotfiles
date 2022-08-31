@@ -14,14 +14,14 @@ configuration{
 }
 
 * {
-    bg-col: rgba(0,0,0,1);
-    bg-col-light: rgba(0,0,0,1);
-    border-col: #96CE83;
-    selected-col: #3A5451;
-    blue: #96CE83;
-    fg-col: #EAE0D7;
-    fg-col2: #96CE83;
-    grey: #EAE0D7;
+    bg-col:  #2E3440;
+    bg-col-light: #2E3440;
+    border-col: #81A1C1;
+    selected-col: #2E3440;
+    blue: #5E81AC;
+    fg-col: #D8DEE9;
+    fg-col2: #D08770;
+    grey: #D9E0EE;
     width: 600;
 }
 
@@ -39,12 +39,12 @@ window {
 }
 
 mainbox {
-    background-color: rgba(0,0,0,0.0);
+    background-color: @bg-col;
 }
 
 inputbar {
-    background-color: rgba(0,0,0,0.0);
     children: [prompt,entry];
+    background-color: @bg-col;
     border-radius: 5px;
     padding: 2px;
 }
@@ -52,7 +52,7 @@ inputbar {
 prompt {
     background-color: @blue;
     padding: 6px;
-    text-color: @seleted-col;
+    text-color: @bg-col;
     border-radius: 3px;
     margin: 20px 0px 0px 20px;
 }
@@ -66,7 +66,7 @@ entry {
     padding: 6px;
     margin: 20px 0px 0px 10px;
     text-color: @fg-col;
-    background-color: rgba(0,0,0,0);
+    background-color: @bg-col;
 }
 
 listview {
@@ -74,13 +74,13 @@ listview {
     padding: 6px 0px 0px;
     margin: 10px 0px 0px 20px;
     columns: 2;
-    background-color: rgba(0,0,0,0);
+    background-color: @bg-col;
 }
 
 element {
     padding: 5px;
-    background-color: rgba(0,0,0,0);
-    text-color: @fg-col;
+    background-color: @bg-col;
+    text-color: @fg-col  ;
 }
 
 element-icon {
@@ -88,27 +88,23 @@ element-icon {
 }
 
 element selected {
-    background-color: rgba(0,0,0,0.0);
-    text-color: @fg-col2;
-    border: 2px;
-    border-radius: 10px;
-    border-color: @border-col;
+    background-color:  @selected-col ;
+    text-color: @fg-col2  ;
 }
 
 mode-switcher {
     spacing: 0;
-    background-color: rgba(0,0,0,0.0);
   }
 
 button {
     padding: 10px;
-    background-color: rgba(0,0,0,0.0);
+    background-color: @bg-col-light;
     text-color: @grey;
     vertical-align: 0.5; 
     horizontal-align: 0.5;
 }
 
 button selected {
-  background-color: rgba(0,0,0,0.0);
+  background-color: @bg-col;
   text-color: @blue;
 }
