@@ -1,13 +1,123 @@
+" generic settings
+let mapleader = ","
+
 set number
 set laststatus=2
+syntax enable " enable syntax highglighting
+syntax on " turn on syntax highlighting
+set undodir=~/.config/nvim/undodir " set undotree file directory
+set undofile " set undotree to save to file
+set number " set line number
+set nowrap " set no soft wrap
+set tabstop=2 softtabstop=2 " set tab size
+set shiftwidth=2 " affect amount of indentation
+set expandtab " set that tab will insert softabstop amount of space characters
+set nowritebackup " set to never save backup
+set noswapfile " set no swap file
+set nobackup " set no backup file
+set breakindent " set every wrapped line will continue visually indented
+set smartindent " set smart indentation
+set smartcase " set to be cas sensitive when there is capital letter, this need set incsearch to wo
+set incsearch " set search to be case insensitive
+set hidden
+set updatetime=250
+set shortmess+=c " for CoC plugin
+set noshowmode " set that vim mode is hidden, to incorporate for lightline plugin
+set background=dark
 
+" " Work with buffers
+map <leader>b :Buffers<CR>
+map <leader>q :bd<CR>
+" " Panel switching
+map <leader>h :wincmd h<CR>
+map <leader>j :wincmd j<CR>
+map <leader>k :wincmd k<CR>
+map <leader>l :wincmd l<CR>
+" " Split panel
+nnoremap <leader>v <C-w>v
+nnoremap <leader>s <C-w>s
+" " Map yanked to clipboard
+vnoremap <C-c> "*y
+" " Line moving
+" " Normal mode
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+" " Insert mode
+inoremap <C-j> <ESC>:m .+1<CR>==gi
+inoremap <C-k> <ESC>:m .-2<CR>==gi
+" " Visual mode
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+" plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'chrisbra/colorizer'
-Plug 'itchyny/lightline.vim'
+	Plug 'itchyny/lightline.vim'
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim' 
+	Plug 'preservim/nerdtree'
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+	Plug 'Xuyuanp/nerdtree-git-plugin'
+	Plug 'ap/vim-css-color'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
+source ~/.config/coc/cocconf.vim
+
+" colorizer
 let g:colorizer_auto_color = 1
 
+" lightline
 let g:lightline = {'colorscheme': 'wombat'}
+
+" Nerdtree
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI = 1 " hide helper
+let g:NERDTreeIgnore = ['^node_modules$'] " ignore node_modules to increase load speed
+let g:NERDTreeStatusline = '' " set to empty to use lightline
+noremap <silent> <C-b> :NERDTreeToggle<CR>
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | end
+noremap <leader>pv :NERDTreeFind<bar> :vertical resize 45<CR>
+
+let g:NERDTreeHighlightFolders = 1
+" " Highlights the folder name
+let g:NERDTreeHighlightFoldersFullName = 1
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+let g:NERDTreeExtensionHighlightColor = {}
+let g:NERDTreeExtensionHighlightColor['css'] = s:blue
+let g:NERDTreeExactMatchHighlightColor = {}
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange
+let g:NERDTreePatternMatchHighlightColor = {}
+let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red
+let g:WebDevIconsDefaultFolderSymbolColor = s:beige
+let g:WebDevIconsDefaultFileSymbolColor = s:blue
+
+" fzf
+noremap <C-p> :GFiles<CR>
+noremap <silent> <C-f> :Files<CR>
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit'
+  \}
+
+
