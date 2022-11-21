@@ -10,7 +10,11 @@ return require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-  use "windwp/nvim-autopairs"
+  use 'windwp/nvim-autopairs'
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
   --tabs
   use {'romgrk/barbar.nvim', wants = 'nvim-web-devicons'}
   --lsp
@@ -34,6 +38,10 @@ return require('packer').startup(function(use)
       {'L3MON4D3/LuaSnip'},
       {'rafamadriz/friendly-snippets'},
     }
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
   }
 
   -- themes

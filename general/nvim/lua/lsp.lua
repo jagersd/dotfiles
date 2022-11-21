@@ -12,3 +12,8 @@ lsp.nvim_workspace()
 
 lsp.setup()
 
+require('nvim-treesitter.configs').setup {
+  ensure_installed = {'go', 'php', 'javascript'},
+  highlight = {enable = true},
+}
+
