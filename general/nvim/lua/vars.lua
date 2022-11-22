@@ -1,5 +1,5 @@
 vim.cmd([[
   syntax on
-  colorscheme nightfox
+  colorscheme nordfox
 ]])
 

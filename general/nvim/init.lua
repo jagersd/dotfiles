@@ -11,3 +11,4 @@ require('nvim-autopairs').setup()
 require('lualine').setup()
 
 require('lsp')
+
