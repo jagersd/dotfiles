@@ -12,6 +12,15 @@ lsp.ensure_installed({
 
 lsp.nvim_workspace()
 
+lsp.setup_nvim_cmp({
+  sources = {
+    {name = 'path'},
+    {name = 'nvim_lsp', keyword_length = 1},
+    {name = 'buffer', keyword_length = 3},
+    {name = 'luasnip', keyword_length = 2},
+  }
+})
+
 lsp.setup()
 
 require('nvim-treesitter.configs').setup {
