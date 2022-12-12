@@ -7,7 +7,7 @@ lsp.ensure_installed({
   'tsserver',
   'gopls',
   'sumneko_lua',
-  'intelephense',
+  'phpactor',
 })
 
 lsp.nvim_workspace()
@@ -23,11 +23,27 @@ lsp.setup_nvim_cmp({
 
 lsp.setup()
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+      focusable = false,
+      border = "single"
+  }
+)
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  update_in_insert = false,
+  underline = true,
+  severity_sort = false,
+  float = true,
+})
+
 require('nvim-treesitter.configs').setup {
   ensure_installed = {'go', 'php', 'javascript'},
   highlight = {enable = true},
 }
 
-vim.o.updatetime = 500
-vim.cmd [[autocmd! CursorHold * lua vim.diagnostic.open_float(nil, {focus=false})]]
-
+vim.o.updatetime = 300
+--vim.cmd [[autocmd! CursorHold * lua vim.diagnostic.open_float(nil, {focus=false})]]
+vim.cmd [[autocmd! CursorHold *.go,*.php,*.js,*.vue lua vim.lsp.buf.hover()]]

@@ -1,4 +1,5 @@
 return require('packer').startup(function(use)
+  -- navigation
   use 'wbthomason/packer.nvim'
   use {
     'nvim-tree/nvim-tree.lua',
@@ -14,6 +15,10 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use {
+	"ggandor/leap.nvim",
+	config = function() require("leap").set_default_keymaps() end
   }
   --tabs
   use {'romgrk/barbar.nvim', wants = 'nvim-web-devicons'}
