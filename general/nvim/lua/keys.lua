@@ -9,8 +9,11 @@ map("n","<leader>j",":wincmd j<CR>",{})
 map("n","<leader>k",":wincmd k<CR>",{})
 map("n","<leader>l",":wincmd l<CR>",{})
 
+-- move selected items (thanks to theprimeagen)
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 -- navigation tabs
--- Move to previous/next
 map('n', '<A-h>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-l>', '<Cmd>BufferNext<CR>', opts)
 
@@ -23,4 +26,6 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
 vim.keymap.set('n', '<leader>fd', builtin.lsp_implementations, {})
 
+--get out of insert quicker
+vim.keymap.set("i", "<C-c>", "<Esc>")
 
