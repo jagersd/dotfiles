@@ -1,5 +1,6 @@
 vim.cmd([[
   syntax on
-  colorscheme nightfox
+  let g:everforest_background = 'hard'
+  colorscheme everforest
 ]])
 

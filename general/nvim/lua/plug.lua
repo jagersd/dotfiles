@@ -22,6 +22,8 @@ return require('packer').startup(function(use)
   }
   --tabs
   use {'romgrk/barbar.nvim', wants = 'nvim-web-devicons'}
+  --colorizer
+  use 'norcalli/nvim-colorizer.lua'
   --lsp
   use {
     'VonHeikemen/lsp-zero.nvim',
@@ -51,7 +53,12 @@ return require('packer').startup(function(use)
 
   -- themes
   use "EdenEast/nightfox.nvim"
-  use "folke/tokyonight.nvim"
+  use { "ellisonleao/gruvbox.nvim" }
+  use { "kabouzeid/nvim-jellybeans", requires = "rktjmp/lush.nvim" }
+  use { "sainnhe/everforest" }
+
+  use { "catppuccin/nvim", as = "catppuccin" }
+
 end)
 
 

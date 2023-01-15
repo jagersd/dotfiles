@@ -8,6 +8,8 @@ map("n","<leader>h",":wincmd h<CR>",{})
 map("n","<leader>j",":wincmd j<CR>",{})
 map("n","<leader>k",":wincmd k<CR>",{})
 map("n","<leader>l",":wincmd l<CR>",{})
+map("n","<C-d>","<C-d>zz",{})
+map("n","<C-u>","<C-u>zz",{})
 
 -- move selected items (thanks to theprimeagen)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -16,6 +18,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- navigation tabs
 map('n', '<A-h>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-l>', '<Cmd>BufferNext<CR>', opts)
+map('n', '<A-q>', '<Cmd>BufferClose<CR>', opts)
 
 --telescope
 local builtin = require('telescope.builtin')
