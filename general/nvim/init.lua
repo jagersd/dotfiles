@@ -10,5 +10,6 @@ require('nvim-tree').setup()
 require('nvim-autopairs').setup()
 require('lualine').setup()
 require('colorizer').setup()
+require('toggleterm').setup()
 
 require('lsp')
