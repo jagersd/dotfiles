@@ -6,8 +6,7 @@ lsp.ensure_installed({
   'cssls',
   'tsserver',
   'gopls',
-  'sumneko_lua',
-  'phpactor',
+  'intellisense'
 })
 
 lsp.nvim_workspace()
@@ -40,7 +39,7 @@ vim.diagnostic.config({
 })
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = {'go', 'php', 'javascript'},
+  ensure_installed = {'go', 'php', 'javascript','vue'},
   highlight = {enable = true},
 }
 

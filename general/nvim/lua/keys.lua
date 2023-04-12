@@ -10,6 +10,7 @@ map("n","<leader>k",":wincmd k<CR>",{})
 map("n","<leader>l",":wincmd l<CR>",{})
 map("n","<C-d>","<C-d>zz",{})
 map("n","<C-u>","<C-u>zz",{})
+map("n","<leader>t",":ToggleTerm direction=float <CR>",{})
 
 -- move selected items (thanks to theprimeagen)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -28,6 +29,9 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
 vim.keymap.set('n', '<leader>fd', builtin.lsp_implementations, {})
+
+--gitsigns
+map("n", "<leader>c",":Gitsigns preview_hunk_inline<CR>",{})
 
 --get out of insert quicker
 vim.keymap.set("i", "<C-c>", "<Esc>")

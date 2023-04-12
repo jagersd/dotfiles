@@ -16,10 +16,9 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use {
-	"ggandor/leap.nvim",
-	config = function() require("leap").set_default_keymaps() end
-  }
+  use {"akinsho/toggleterm.nvim", tag = '2.4.0', config = function()
+    require("toggleterm").setup()
+  end}
   --tabs
   use {'romgrk/barbar.nvim', wants = 'nvim-web-devicons'}
   --colorizer
@@ -50,6 +49,13 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+    require('gitsigns').setup()
+    end
+  }
+  use 'jwalton512/vim-blade'
 
   -- themes
   use "EdenEast/nightfox.nvim"
