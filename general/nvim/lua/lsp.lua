@@ -6,7 +6,7 @@ lsp.ensure_installed({
   'cssls',
   'tsserver',
   'gopls',
-  'intellisense'
+  'intelephense'
 })
 
 lsp.nvim_workspace()
@@ -41,8 +41,19 @@ vim.diagnostic.config({
 require('nvim-treesitter.configs').setup {
   ensure_installed = {'go', 'php', 'javascript','vue'},
   highlight = {enable = true},
+  indent = {enable = true}
 }
+
+local cmp = require('cmp')
+
+cmp.setup({
+  mapping = {
+    ['<CR>'] = cmp.mapping.confirm({select = true}),
+  }
+})
 
 vim.o.updatetime = 300
 --vim.cmd [[autocmd! CursorHold * lua vim.diagnostic.open_float(nil, {focus=false})]]
-vim.cmd [[autocmd! CursorHold *.go,*.php,*.js,*.vue lua vim.lsp.buf.hover()]]
+vim.cmd [[autocmd! CursorHold *.go,*.php,*.js lua vim.lsp.buf.hover()]]
+
+
