@@ -1,8 +1,6 @@
-vim.cmd([[
-  syntax on
-  let g:everforest_background = 'hard'
-  colorscheme everforest
-]])
+vim.cmd.colorscheme("everforest")
+vim.g.everforest_background = "hard"
+vim.cmd.syntax("on")
 
 --local group = vim.api.nvim_create_augroup("Markdown per filetype", { clear = true })
 --

@@ -1,5 +1,4 @@
-local lsp = require('lsp-zero')
-lsp.preset('recommended')
+local lsp = require('lsp-zero').preset('recommended')
 
 lsp.ensure_installed({
   'emmet_ls',
@@ -54,6 +53,12 @@ cmp.setup({
 
 vim.o.updatetime = 300
 --vim.cmd [[autocmd! CursorHold * lua vim.diagnostic.open_float(nil, {focus=false})]]
-vim.cmd [[autocmd! CursorHold *.go,*.php,*.js lua vim.lsp.buf.hover()]]
+--vim.cmd [[autocmd! CursorHold *.go,*.php,*.js lua vim.lsp.buf.hover()]]
 
+local hoverGrp = vim.api.nvim_create_augroup("ShowHover", {clear = true})
 
+vim.api.nvim_create_autocmd("CursorHold", {
+    pattern = {"*.vue,*.css,*.html,*.go,*.lua,*.php,*.py,*.sh"},
+    command = "lua vim.lsp.buf.hover()",
+    group = hoverGrp,
+})
