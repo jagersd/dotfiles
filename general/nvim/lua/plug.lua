@@ -56,6 +56,7 @@ return require('packer').startup(function(use)
     end
   }
   use 'jwalton512/vim-blade'
+  use 'ray-x/go.nvim'
 
   -- themes
   use "EdenEast/nightfox.nvim"

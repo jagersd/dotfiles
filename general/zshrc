@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/stefan/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -81,7 +81,7 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-export PATH=/home/stefan/downloaded_software/flutter/bin:$PATH
+export PATH=$HOME/downloaded_software/flutter/bin:$PATH
 export ANDROID_HOME=$HOME/Android/Sdk
 path=("${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools" $path)
 
@@ -89,6 +89,12 @@ export CAPACITOR_ANDROID_STUDIO_PATH="$HOME/downloaded_software/android-studio/b
 
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$HOME/downloaded_software/exercism/bin:$PATH
+export PATH=$HOME/downloaded_software/neovim/nvim-linux64/bin:$PATH
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -111,6 +117,6 @@ export PATH=$JAVA_HOME/bin:$PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
+
+# Scaleway CLI autocomplete initialization.
+eval "$(scw autocomplete script shell=zsh)"

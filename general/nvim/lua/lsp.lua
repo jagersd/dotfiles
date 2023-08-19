@@ -58,7 +58,7 @@ vim.o.updatetime = 300
 local hoverGrp = vim.api.nvim_create_augroup("ShowHover", {clear = true})
 
 vim.api.nvim_create_autocmd("CursorHold", {
-    pattern = {"*.vue,*.css,*.html,*.go,*.lua,*.php,*.py,*.sh"},
+    pattern = {"*.js,*.go,*.lua,*.php,*.py,*.sh"},
     command = "lua vim.lsp.buf.hover()",
     group = hoverGrp,
 })
