@@ -1,13 +1,8 @@
 vim.g.mapleader = ","
+vim.g.maplocalleader = ","
 
-require('plug')
-require('vars')
 require('opts')
-require('keys')
-
-require('nvim-tree').setup()
-require('nvim-autopairs').setup()
-require('lualine').setup()
-require('colorizer').setup()
-
+require('pluginmanager')
 require('lsp')
+require('vars')
+require('keys')
