@@ -76,6 +76,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'nvim_lsp_signature_help' },
     }, {
             { name = 'buffer' },
         })
@@ -100,9 +101,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = format_sync_grp,
 })
 
-local hoverGrp = vim.api.nvim_create_augroup("ShowHover", {clear = true})
-vim.api.nvim_create_autocmd("CursorHold", {
-    pattern = {"*.js,*.go,*.php,*.py,*.sh"},
-    command = "lua vim.lsp.buf.hover()",
-    group = hoverGrp,
-})
+--local hoverGrp = vim.api.nvim_create_augroup("ShowHover", {clear = true})
+--vim.api.nvim_create_autocmd("CursorHold", {
+--    pattern = {"*.js,*.go,*.php,*.py,*.sh"},
+--    command = "lua vim.lsp.buf.hover()",
+--    group = hoverGrp,
+--})
