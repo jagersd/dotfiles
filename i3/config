@@ -3,9 +3,9 @@
 ###############
 
 set $mod Mod4
-set $theme nord
+set $theme everforest
 
-font pango:JetBrains Mono Regular 10
+font pango:JetBrains Mono Regular 11
 gaps inner 12
 gaps outer 6
 
@@ -16,8 +16,8 @@ for_window [class="^.*"] border pixel 2
 focus_follows_mouse no
 
 #exec_always --no-startup-id ~/.screenlayout/setxrandr.sh
-exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --ignore-empty-password --color=2E3440
+#exec --no-startup-id dex --autostart --environment i3
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --ignore-empty-password --color=2E3440
 exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
@@ -218,8 +218,8 @@ bindsym $mod+p exec rofi -show power-menu -modi power-menu:$HOME/.config/i3/scri
 #nautilus
 bindsym $mod+Shift+n exec /usr/bin/nautilus --new-window --class=floating_window
 
-#gnome control center
-bindsym $mod+c exec gnome-control-center --class=floating_window
+#audio settings
+bindsym $mod+c exec pavucontrol --class=floating_window
 
 #############################
 # Startup items

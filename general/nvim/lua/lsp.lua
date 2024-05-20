@@ -28,20 +28,33 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-local default_setup = function(server)
-  lspconfig[server].setup({})
-end
+require('mason').setup({
+    ui = {border = "rounded"}
+})
 
-require('mason').setup({})
+
 require('mason-lspconfig').setup({
     ensure_installed = {
         'emmet_ls',
         'cssls',
         'tsserver',
         'gopls',
-        'intelephense'
-    },
-    handlers = {default_setup},
+        'intelephense',
+        'bashls'
+    }
+})
+
+local default_handler = function(server)
+    lspconfig[server].setup({})
+end
+
+require('mason-lspconfig').setup_handlers({
+    default_handler,
+    ["bashls"] = function()
+        lspconfig.bashls.setup({
+            filetypes = {"sh","txt"},
+        })
+    end
 })
 
 local cmp = require('cmp')
@@ -49,7 +62,9 @@ local luasnip = require('luasnip')
 
 cmp.setup({
     snippet = {
-        expand = function(args) luasnip.lsp_expand(args.body) end,
+        expand = function(args)
+            require'luasnip'.lsp_expand(args.body)
+        end,
     },
     mapping = {
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
@@ -82,15 +97,6 @@ cmp.setup({
         })
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = {'sh', 'zsh'},
-  callback = function()
-    vim.lsp.start({
-      name = 'bash-language-server',
-      cmd = { 'bash-language-server', 'start' },
-    })
-  end,
-})
 
 local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -101,6 +107,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = format_sync_grp,
 })
 
+--No longer required after installing shellcheck through mason
+--vim.api.nvim_create_autocmd('FileType', {
+--  pattern = {'sh', 'zsh'},
+--  callback = function()
+--    vim.lsp.start({
+--      name = 'bash-language-server',
+--      cmd = { 'bash-language-server', 'start' },
+--    })
+--  end,
+--})
+
+--Caused some issues on hover
 --local hoverGrp = vim.api.nvim_create_augroup("ShowHover", {clear = true})
 --vim.api.nvim_create_autocmd("CursorHold", {
 --    pattern = {"*.js,*.go,*.php,*.py,*.sh"},

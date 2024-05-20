@@ -37,7 +37,7 @@ start_container () {
             digIn
         else 
             echo "Spinning up a fresh container"
-            docker run --name "$containerName" -it --mount src="$HOME/projects",target=/root/projects,type=bind "$containerName" /bin/zsh && digIn
+            docker run --name "$containerName" -it --mount src="$HOME/projects",target=/home/pdeuser/projects,type=bind "$containerName" /bin/zsh && digIn
         fi
     fi
 }

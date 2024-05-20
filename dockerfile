@@ -6,12 +6,15 @@ RUN pacman -S neovim tmux zsh git --noconfirm
 
 COPY --from=golang:latest /usr/local/go /usr/local/go
 
-WORKDIR /root
+RUN useradd -Ng wheel --create-home --no-log-init pdeuser && \
+    echo 'pdeuser ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+USER pdeuser
+WORKDIR /home/pdeuser
 
 COPY ./general/nvim .config/nvim
 COPY ./general/tmux.conf .tmux.conf
-
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 COPY ./pde/zshrc .zshrc
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 CMD ["zsh"]

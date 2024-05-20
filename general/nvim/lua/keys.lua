@@ -30,9 +30,6 @@ map('n', '<leader>fh', builtin.help_tags, {})
 map('n', '<leader>fr', builtin.lsp_references, {})
 map('n', '<leader>fd', builtin.lsp_implementations, {})
 
---gitsigns
-map("n", "<leader>c",":Gitsigns preview_hunk_inline<CR>",{})
-
 --get out of insert quicker
 map("i", "<C-c>", "<Esc>")
 
