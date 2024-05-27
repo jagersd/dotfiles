@@ -33,17 +33,38 @@ return {
         event = {"CmdlineEnter"},
         ft = {"go", 'gomod'},
     },
-    { "zbirenbaum/copilot.lua",
-        enabled = false,
+    {"zbirenbaum/copilot.lua",
         cmd = "Copilot",
-        build = ":Copilot auth",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({
+                suggestion = { enabled = false },
+                panel = { enabled = false },
+            })
+        end,
+    },
+    {
+        "zbirenbaum/copilot-cmp",
+        config = function ()
+            require("copilot_cmp").setup()
+        end
+    },
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        branch = "canary",
+        dependencies = {
+            { "zbirenbaum/copilot.lua" },
+            { "nvim-lua/plenary.nvim" },
+        },
         opts = {
-            suggestion = { enabled = false },
-            panel = { enabled = false },
-            filetypes = {
-                markdown = true,
-                help = true,
+            context = "buffer",
+            debug = false,
+            show_help = false,
+            window = {
+                layout = 'vertical',
+                width = 0.4,
+                height = 0.5,
             },
         },
-    }
+    },
 }
