@@ -30,6 +30,17 @@ map('n', '<leader>fh', builtin.help_tags, {})
 map('n', '<leader>fr', builtin.lsp_references, {})
 map('n', '<leader>fd', builtin.lsp_implementations, {})
 
+--gitsigns
+map("n", "<leader>c",":Gitsigns preview_hunk_inline<CR>",{})
+map("n", "<leader>b",":Gitsigns blame_line<CR>",{})
+
+--copilot
+map("n", "<leader>p",":Copilot enable<CR>", {})
+map("n", "<leader>pp","[[<Cmd>lua require('cmp').complete({ config = { sources = copilot_only_sources } })<CR>]]", opts)
+map("n", "<leader>l",":CopilotChat ", {})
+map("n","<leader>;",":CopilotChatToggle<CR>",{})
+map("n","<leader>:",":CopilotChatReset<CR>",{})
+
 --get out of insert quicker
 map("i", "<C-c>", "<Esc>")
 
