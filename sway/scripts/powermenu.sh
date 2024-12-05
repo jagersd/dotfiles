@@ -6,7 +6,7 @@ selected=$(echo -e $entries|wofi --width 250 --height 240 --dmenu --cache-file /
 
 case $selected in
   logout)
-    pkill -u kia;;
+    sway exit;;
   suspend)
     exec systemctl suspend;;
   reboot)

@@ -2,6 +2,8 @@
 # Generic Setup things
 ###############
 
+# sway wofi waybar wdisplays swaylock kanshi xdg-desktop-portal-wlr wev 
+
 set $mod Mod4
 set $scriptDir $HOME/.config/sway/scripts
 
@@ -17,8 +19,9 @@ focus_follows_mouse no
 
 exec swayidle -w \
     timeout 300 'swaylock -f -c #232A2E' \
-    timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-    before-sleep 'swaylock -f -c #232A2E'
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -c #232A2E' 
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -26,8 +29,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight set +10%
-bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight set +4%
+bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight set 4%-
 
 floating_modifier $mod
 
@@ -54,7 +57,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+q kill
 
 # Screenshot
-bindsym Ctrl+Shift+p exec --no-startup-id flameshot gui
+bindsym Ctrl+Shift+p exec slurp | grim -g- - | wl-copy
+bindsym $mod+Shift+p exec slurp | grim -g- - | wl-copy
 
 # change focus
 bindsym $mod+h focus left
@@ -157,7 +161,7 @@ bindsym $mod+Ctrl+Shift+h move workspace to output left
 
 #cargo install sway-new-workspace
 #From: https://github.com/nzig/sway-new-workspace
-bindsym $mod+Shift+Return exec sway-new-workspace open
+bindsym $mod+Shift+Return exec $HOME/.cargo/bin/sway-new-workspace open
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -208,6 +212,7 @@ bindsym $mod+c exec pavucontrol --class=floating_window
 #############################
 # Startup items
 #############################
+exec --no-startup-id $HOME/.config/sway/scripts/on-startup.sh
 
 #bluetooth
 exec --no-startup-id blueman-manager
@@ -226,12 +231,22 @@ bar {
    swaybar_command waybar
 }
 
+#############################
+# Hardware
+#############################
+
 input "type:touchpad" {
 	dwt enabled
 	tap enabled
 	natural_scroll enabled
 	middle_emulation enabled
 }
+
+#custom refers to ~/.config/xkb/symbols
+input "type:keyboard" {
+    xkb_layout custom 
+}
+
 
 ############################
 # Theming
