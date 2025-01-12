@@ -6,17 +6,17 @@
 
 window#waybar {
 	background: transparent;
-	color: #fdf6e3;
+	color: #D3C6AA;
 }
 
 #custom-right-arrow-dark,
 #custom-left-arrow-dark {
-	color: #1a1a1a;
+	color: #1E2326;
 }
 #custom-right-arrow-light,
 #custom-left-arrow-light {
 	color: #292b2e;
-	background: #1a1a1a;
+	background: #1E2326;
 }
 
 #workspaces,
@@ -29,12 +29,12 @@ window#waybar {
 #battery,
 #disk,
 #tray {
-	background: #1a1a1a;
+	background: #1E2326;
 }
 
 #workspaces button {
 	padding: 0 0px;
-	color: #fdf6e3;
+	color: #D3C6AA;
 }
 #workspaces button.focused {
 	color: #83C092;
@@ -44,25 +44,25 @@ window#waybar {
 	text-shadow: inherit;
 }
 #workspaces button:hover {
-	background: #1a1a1a;
-	border: #1a1a1a;
+	background: #1E2326;
+	border: #1E2326;
 	padding: 0 3px;
 }
 
 #pulseaudio {
-	color: #268bd2;
+	color: #7FBBB3;
 }
 #memory {
-	color: #2aa198;
+	color: #D3C6AA;
 }
 #cpu {
-	color: #6c71c4;
+	color: #DBBC7F;
 }
 #battery {
-	color: #859900;
+	color: #A7C080;
 }
 #disk {
-	color: #b58900;
+	color: #E69875;
 }
 
 #clock,

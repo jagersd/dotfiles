@@ -25,10 +25,10 @@
 		"pulseaudio",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
-		"memory",
+		"cpu",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
-		"cpu",
+		"memory",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
 		"battery",
@@ -74,7 +74,6 @@
 		"format": "{:%d-%m}",
 		"tooltip": false
 	},
-
 	"pulseaudio": {
 		"format": "{icon} {volume:2}%",
 		"format-bluetooth": "{icon}  {volume}%",
@@ -92,11 +91,11 @@
 	},
 	"memory": {
 		"interval": 5,
-		"format": "Mem {}%"
+		"format": "󰕳 {}%"
 	},
 	"cpu": {
 		"interval": 5,
-		"format": "CPU {usage:2}%"
+		"format": " {usage:2}%"
 	},
 	"battery": {
 		"states": {
@@ -115,7 +114,7 @@
 	},
 	"disk": {
 		"interval": 60,
-		"format": "Disk {percentage_used:2}%",
+		"format": "󰋊 {percentage_used:2}%",
 		"path": "/"
 	},
 	"tray": {
