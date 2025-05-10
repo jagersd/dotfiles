@@ -37,7 +37,7 @@ map("n", "<leader>b",":Gitsigns blame_line<CR>",{})
 --copilot
 map("n", "<leader>p",":Copilot enable<CR>", {})
 map("n", "<leader>pp","[[<Cmd>lua require('cmp').complete({ config = { sources = copilot_only_sources } })<CR>]]", opts)
-map("n", "<leader>l",":CopilotChat ", {})
+map("n", "<leader>.",":CopilotChat ", {})
 map("n","<leader>;",":CopilotChatToggle<CR>",{})
 map("n","<leader>:",":CopilotChatReset<CR>",{})
 

@@ -37,7 +37,6 @@ require('mason-lspconfig').setup({
     ensure_installed = {
         'emmet_ls',
         'cssls',
-        'tsserver',
         'gopls',
         'intelephense',
         'bashls'

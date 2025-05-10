@@ -29,3 +29,15 @@ set.ttimeoutlen = 0
 set.updatetime = 250
 set.wildmenu = true
 set.wrap = true
+
+vim.api.nvim_create_augroup("CustomFiletypeSettings", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = "CustomFiletypeSettings",
+    pattern = { "json", "yaml", "yml", "terraform" },
+    callback = function()
+        vim.opt_local.tabstop = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.shiftwidth = 2
+    end,
+})

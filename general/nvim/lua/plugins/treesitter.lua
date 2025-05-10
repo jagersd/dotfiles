@@ -7,7 +7,7 @@ return {
             { "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
         },
         configs.setup({
-            ensure_installed = { "go", "lua", "php", "vue", "javascript", "html" },
+            ensure_installed = { "go", "lua", "php", "javascript", "html" },
             sync_install = false,
             highlight = { enable = true },
             indent = { enable = true },  
