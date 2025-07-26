@@ -1,0 +1,38 @@
+set realname = "Stefan de Jager"
+set from = stefan@stefandejager.nl
+set use_from = yes
+set envelope_from = yes
+
+# IMAP settings
+set imap_user = stefan@stefandejager.nl
+set imap_pass = ************
+set folder = imaps://imap.host.com:993
+set spoolfile = +INBOX
+set postponed = "+Drafts"
+set record = "+Sent"
+set copy = yes
+
+
+# SMTP settings (for sending)
+set smtp_url = "smtps://stefan@stefandejager.nl@smtp.host.com:465/"
+set smtp_pass = ************
+
+# Mailboxes
+mailboxes = "+INBOX" "+Sent" "+Drafts" "+Trash"
+
+set ssl_force_tls = yes
+set ssl_starttls = yes
+set ssl_verify_dates = yes
+set ssl_verify_host = yes
+
+set header_cache = "~/.cache/neomutt/headers"
+set message_cachedir = "~/.cache/neomutt/bodies"
+set certificate_file = "~/.cache/neomutt/certificates"
+
+set editor = "vim"
+set sort_aux = 'reverse-last-date-received'
+set pager_index_lines = 10
+set index_format = "%4C %Z %{%b %d} %-20.20F %s"
+set status_format = "-%r-NeoMutt: %f [Msgs:%?M?%M/?%m]---%> %?p?(%p Pct)-?"
+set markers = no
+set smart_wrap = yes
