@@ -1,4 +1,5 @@
 return {
+    { "neovim/nvim-lspconfig"},
     { "folke/neodev.nvim", opts = {} },
     { "williamboman/mason.nvim"},
     {"neovim/nvim-lspconfig",

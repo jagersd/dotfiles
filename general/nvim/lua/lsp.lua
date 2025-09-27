@@ -1,12 +1,3 @@
-local lspconfig = require('lspconfig')
-local lsp_defaults = lspconfig.util.default_config
-
-lsp_defaults.capabilities = vim.tbl_deep_extend(
-  'force',
-  lsp_defaults.capabilities,
-  require('cmp_nvim_lsp').default_capabilities()
-)
-
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
@@ -41,19 +32,6 @@ require('mason-lspconfig').setup({
         'intelephense',
         'bashls'
     }
-})
-
-local default_handler = function(server)
-    lspconfig[server].setup({})
-end
-
-require('mason-lspconfig').setup_handlers({
-    default_handler,
-    ["bashls"] = function()
-        lspconfig.bashls.setup({
-            filetypes = {"sh","txt"},
-        })
-    end
 })
 
 local cmp = require('cmp')
@@ -96,23 +74,6 @@ cmp.setup({
             { name = 'buffer' },
         })
 })
-
-lspconfig.yamlls.setup {
-  settings = {
-    yaml = {
-      schemas = {
-        kubernetes = "*-k8s.yaml",
-        ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-        ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-        ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
-        ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-        ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-        ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-        ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
-      },
-    },
-  },
-}
 
 local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
