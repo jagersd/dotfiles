@@ -50,14 +50,14 @@ return {
             require("copilot_cmp").setup()
         end
     },
-        {
+    {
         "CopilotC-Nvim/CopilotChat.nvim",
         dependencies = {
             { "zbirenbaum/copilot.lua" },
             { "nvim-lua/plenary.nvim" },
         },
         opts = {
-            context = "buffer",
+            sticky = { '#buffer:active'},
             debug = false,
             show_help = false,
             window = {
