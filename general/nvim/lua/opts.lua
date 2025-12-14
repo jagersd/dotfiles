@@ -34,7 +34,7 @@ vim.api.nvim_create_augroup("CustomFiletypeSettings", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
     group = "CustomFiletypeSettings",
-    pattern = { "json", "yaml", "yml", "terraform" },
+    pattern = { "json", "yaml", "yml", "terraform","nix" },
     callback = function()
         vim.opt_local.tabstop = 2
         vim.opt_local.softtabstop = 2
