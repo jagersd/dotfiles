@@ -1,87 +1,77 @@
-vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'LSP actions',
-  callback = function(event)
-    local opts = {buffer = event.buf}
-    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+local servers = {
+    bashls = {},
+    cssls = {},
+    emmet_ls = {},
+    gopls = {},
+    intelephense = {},
+}
 
-    vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
-    vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
-    vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
-  end
+local lsp_group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = lsp_group,
+    desc = 'LSP actions',
+    callback = function(event)
+        local map = function(mode, lhs, rhs, desc)
+            vim.keymap.set(mode, lhs, rhs, {
+                buffer = event.buf,
+                silent = true,
+                desc = desc,
+            })
+        end
+
+        map('n', 'K', vim.lsp.buf.hover, 'LSP hover')
+        map('n', 'gd', vim.lsp.buf.definition, 'LSP definition')
+        map('n', 'gD', vim.lsp.buf.declaration, 'LSP declaration')
+        map('n', 'gi', vim.lsp.buf.implementation, 'LSP implementation')
+        map('n', 'go', vim.lsp.buf.type_definition, 'LSP type definition')
+        map('n', 'gr', vim.lsp.buf.references, 'LSP references')
+        map('n', 'gs', vim.lsp.buf.signature_help, 'LSP signature help')
+        map('n', '<F2>', vim.lsp.buf.rename, 'LSP rename')
+        map({ 'n', 'x' }, '<F3>', function()
+            vim.lsp.buf.format({ async = true })
+        end, 'LSP format')
+        map('n', '<F4>', vim.lsp.buf.code_action, 'LSP code action')
+
+        map('n', 'gl', vim.diagnostic.open_float, 'Line diagnostics')
+        map('n', '[d', function()
+            vim.diagnostic.jump({ count = -1, float = true })
+        end, 'Previous diagnostic')
+        map('n', ']d', function()
+            vim.diagnostic.jump({ count = 1, float = true })
+        end, 'Next diagnostic')
+    end,
+})
+
+vim.diagnostic.config({
+    float = { border = 'rounded' },
 })
 
 require('mason').setup({
-    ui = {border = "rounded"}
+    ui = { border = 'rounded' },
 })
-
 
 require('mason-lspconfig').setup({
-    ensure_installed = {
-        'emmet_ls',
-        'cssls',
-        'gopls',
-        'intelephense',
-        'bashls'
-    }
+    ensure_installed = vim.tbl_keys(servers),
+    automatic_enable = {
+        exclude = { 'copilot' },
+    },
 })
 
-local cmp = require('cmp')
-local luasnip = require('luasnip')
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            require'luasnip'.lsp_expand(args.body)
-        end,
-    },
-    mapping = {
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end, {"i", "s"}),
+for server, config in pairs(servers) do
+    config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
+    vim.lsp.config(server, config)
+    vim.lsp.enable(server)
+end
 
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, {"i", "s"}),
-    },
-    sources = cmp.config.sources({
-        { name = 'copilot'},
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'nvim_lsp_signature_help' },
-    }, {
-            { name = 'buffer' },
-        })
-})
-
-local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-   require('go.format').goimport()
-  end,
-  group = format_sync_grp,
+vim.api.nvim_create_autocmd('BufWritePre', {
+    group = vim.api.nvim_create_augroup('GoFormat', { clear = true }),
+    pattern = '*.go',
+    callback = function()
+        require('go.format').goimport()
+    end,
 })
 
 --No longer required after installing shellcheck through mason

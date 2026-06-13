@@ -1,14 +1,21 @@
 return {
-    { "neovim/nvim-lspconfig"},
-    { "folke/neodev.nvim", opts = {} },
-    { "williamboman/mason.nvim"},
-    {"neovim/nvim-lspconfig",
+    {
+        'neovim/nvim-lspconfig',
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            "mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
-            {"hrsh7th/cmp-nvim-lsp"},
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-nvim-lsp-signature-help',
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip',
+            'zbirenbaum/copilot-cmp',
         },
+        config = function()
+            require('lsp')
+        end,
     },
     {"hrsh7th/nvim-cmp",
         version = false,
@@ -21,6 +28,9 @@ return {
             "L3MON4D3/LuaSnip",
             "saadparwaiz1/cmp_luasnip",
         },
+        config = function()
+            require('cmp-config')
+        end,
     },
     {"ray-x/go.nvim",
         dependencies = {
@@ -38,6 +48,8 @@ return {
         cmd = "Copilot",
         event = "InsertEnter",
         config = function()
+            vim.env.NODE_NO_WARNINGS = '1'
+
             require("copilot").setup({
                 suggestion = { enabled = false },
                 panel = { enabled = false },
@@ -53,8 +65,7 @@ return {
     {
         "CopilotC-Nvim/CopilotChat.nvim",
         dependencies = {
-            { "zbirenbaum/copilot.lua" },
-            { "nvim-lua/plenary.nvim" },
+            { "nvim-lua/plenary.nvim", branch = "master" },
         },
         opts = {
             sticky = { '#buffer:active'},

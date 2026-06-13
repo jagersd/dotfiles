@@ -5,7 +5,6 @@ set.clipboard = "unnamedplus"
 set.completeopt = "noinsert,menuone,noselect"
 set.cursorline = true
 set.expandtab = true
-set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldmethod = "manual"
 set.hlsearch = false
 set.incsearch = true
@@ -22,7 +21,6 @@ set.signcolumn = 'yes'
 set.swapfile = false
 set.tabstop = 4
 set.softtabstop = 4
-set.shiftwidth = 4
 set.termguicolors = true
 set.title = true
 set.ttimeoutlen = 0
@@ -30,11 +28,11 @@ set.updatetime = 250
 set.wildmenu = true
 set.wrap = true
 
-vim.api.nvim_create_augroup("CustomFiletypeSettings", { clear = true })
+local filetype_group = vim.api.nvim_create_augroup('CustomFiletypeSettings', { clear = true })
 
-vim.api.nvim_create_autocmd("FileType", {
-    group = "CustomFiletypeSettings",
-    pattern = { "json", "yaml", "yml", "terraform","nix" },
+vim.api.nvim_create_autocmd('FileType', {
+    group = filetype_group,
+    pattern = { 'alloy', 'dosini', 'json', 'terraform', 'toml', 'yaml' },
     callback = function()
         vim.opt_local.tabstop = 2
         vim.opt_local.softtabstop = 2

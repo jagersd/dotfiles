@@ -13,11 +13,10 @@ return {
         filetype = "alloy",
         }
         configs.setup({
-            ensure_installed = { "go", "lua", "php", "javascript", "html" },
+            ensure_installed = { "go", "lua", "php", "javascript", "html","alloy" },
             sync_install = false,
             highlight = { enable = true },
             indent = { enable = true },  
         })
     end
 }
-

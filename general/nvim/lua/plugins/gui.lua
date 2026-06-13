@@ -1,18 +1,19 @@
 return {
-    {"nvim-lualine/lualine.nvim",
+    {'nvim-lualine/lualine.nvim',
+        opts = {},
         dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
-    {"neanias/everforest-nvim",
+    {'neanias/everforest-nvim',
         version = false,
         lazy = false,
         priority = 1000,
         config = function()
-            require("everforest").setup({
+            require('everforest').setup({
                 background = "hard",
             })
         end
     },
-    {'norcalli/nvim-colorizer.lua'},
+    {'norcalli/nvim-colorizer.lua', opts = {}},
     {'romgrk/barbar.nvim',
         dependencies = {
             'lewis6991/gitsigns.nvim',

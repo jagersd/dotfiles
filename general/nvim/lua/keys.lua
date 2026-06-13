@@ -1,16 +1,16 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
-map("n", "n",":NvimTreeToggle<CR>", {})
+map('n', '<leader>n', '<Cmd>NvimTreeToggle<CR>', { desc = 'Toggle file tree' })
 
 -- navigation panes
-map("n","<leader>h",":wincmd h<CR>",{})
-map("n","<leader>j",":wincmd j<CR>",{})
-map("n","<leader>k",":wincmd k<CR>",{})
-map("n","<leader>l",":wincmd l<CR>",{})
-map("n","<C-d>","<C-d>zz",{})
-map("n","<C-u>","<C-u>zz",{})
-map("n","<leader>t",":ToggleTerm direction=float <CR>",{})
+map('n', '<leader>h', '<Cmd>wincmd h<CR>', opts)
+map('n', '<leader>j', '<Cmd>wincmd j<CR>', opts)
+map('n', '<leader>k', '<Cmd>wincmd k<CR>', opts)
+map('n', '<leader>l', '<Cmd>wincmd l<CR>', opts)
+map('n', '<C-d>', '<C-d>zz', opts)
+map('n', '<C-u>', '<C-u>zz', opts)
+map('n', '<leader>t', '<Cmd>ToggleTerm direction=float<CR>', opts)
 
 -- move selected items (thanks to theprimeagen)
 map("v", "J", ":m '>+1<CR>gv=gv")
@@ -23,24 +23,37 @@ map('n', '<A-q>', '<Cmd>BufferClose<CR>', opts)
 
 --telescope
 local builtin = require('telescope.builtin')
-map('n', '<leader>ff', builtin.find_files, {})
-map('n', '<leader>fg', builtin.live_grep, {})
-map('n', '<leader>fb', builtin.buffers, {})
-map('n', '<leader>fh', builtin.help_tags, {})
-map('n', '<leader>fr', builtin.lsp_references, {})
-map('n', '<leader>fd', builtin.lsp_implementations, {})
+map('n', '<leader>ff', builtin.find_files, opts)
+map('n', '<leader>fg', builtin.live_grep, opts)
+map('n', '<leader>fb', builtin.buffers, opts)
+map('n', '<leader>fh', builtin.help_tags, opts)
+map('n', '<leader>fr', builtin.lsp_references, opts)
+map('n', '<leader>fd', builtin.lsp_implementations, opts)
 
 --gitsigns
-map("n", "<leader>c",":Gitsigns preview_hunk_inline<CR>",{})
-map("n", "<leader>b",":Gitsigns blame_line<CR>",{})
+map('n', '<leader>c', '<Cmd>Gitsigns preview_hunk_inline<CR>', opts)
+map('n', '<leader>b', '<Cmd>Gitsigns blame_line<CR>', opts)
 
 --copilot
-map("n", "<leader>p",":Copilot enable<CR>", {})
-map("n", "<leader>pp","[[<Cmd>lua require('cmp').complete({ config = { sources = copilot_only_sources } })<CR>]]", opts)
-map("n", "<leader>.",":CopilotChat ", {})
-map("n","<leader>;",":CopilotChatToggle<CR>",{})
-map("n","<leader>:",":CopilotChatReset<CR>",{})
+map('n', '<leader>p', '<Cmd>Copilot enable<CR>', opts)
+map('n', '<leader>pp', function()
+    local ok, cmp = pcall(require, 'cmp')
+    if not ok then
+        vim.notify('nvim-cmp is not available', vim.log.levels.WARN)
+        return
+    end
+
+    cmp.complete({
+        config = {
+            sources = {
+                { name = 'copilot' },
+            },
+        },
+    })
+end, opts)
+map('n', '<leader>.', ':CopilotChat ', { noremap = true })
+map('n', '<leader>;', '<Cmd>CopilotChatToggle<CR>', opts)
+map('n', '<leader>:', '<Cmd>CopilotChatReset<CR>', opts)
 
 --get out of insert quicker
-map("i", "<C-c>", "<Esc>")
-
+map('i', '<C-c>', '<Esc>', opts)
