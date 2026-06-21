@@ -1,0 +1,102 @@
+[
+  {
+    "context": "Editor && vim_mode == visual && !menu",
+    "bindings": {
+      "J": "editor::MoveLineDown",
+      "K": "editor::MoveLineUp"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      ",": null,
+      "n": "project_panel::ToggleFocus",
+      ", h": "workspace::ActivatePaneLeft",
+      ", j": "workspace::ActivatePaneDown",
+      ", k": "workspace::ActivatePaneUp",
+      ", l": "workspace::ActivatePaneRight",
+      ", t": "terminal_panel::Toggle",
+      ", o": "workspace::Open",
+      ", f f": "file_finder::Toggle",
+      ", f g": "pane::DeploySearch",
+      ", f b": "tab_switcher::Toggle",
+      ", f h": "command_palette::Toggle",
+      ", r": "projects::OpenRecent",
+      ", b": "git::Blame",
+      ", c": "git::Diff",
+      ", e": "editor::ToggleInlineDiagnostics",
+      ", .": "agent::Toggle",
+      ", ;": "agent::Toggle",
+      ", :": "agent::NewThread",
+      ", f r": "editor::FindAllReferences",
+      ", f d": "editor::GoToImplementation",
+      "alt-h": "pane::ActivatePreviousItem",
+      "alt-l": "pane::ActivateNextItem",
+      "alt-q": ["pane::CloseActiveItem", { "close_pinned": false }]
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      ",": null,
+      "n": "project_panel::ToggleFocus",
+      ", h": "workspace::ActivatePaneLeft",
+      ", j": "workspace::ActivatePaneDown",
+      ", k": "workspace::ActivatePaneUp",
+      ", l": "workspace::ActivatePaneRight",
+      ", t": "terminal_panel::Toggle",
+      ", o": "workspace::Open",
+      ", f f": "file_finder::Toggle",
+      ", f g": "pane::DeploySearch",
+      ", f b": "tab_switcher::Toggle",
+      ", f h": "command_palette::Toggle",
+      ", r": "projects::OpenRecent",
+      ", b": "git::Blame",
+      ", c": "git::Diff",
+      ", e": "editor::ToggleInlineDiagnostics",
+      ", .": "agent::Toggle",
+      ", ;": "agent::Toggle",
+      ", :": "agent::NewThread",
+      "alt-h": "pane::ActivatePreviousItem",
+      "alt-l": "pane::ActivateNextItem",
+      "alt-q": ["pane::CloseActiveItem", { "close_pinned": false }]
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      ",": null,
+      "n": "project_panel::Toggle",
+      "ctrl-v": "project_panel::OpenSplitVertical",
+      ", o": "workspace::Open",
+      ", r": "projects::OpenRecent",
+      ", x": "workspace::CloseProject"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "h": "project_panel::CollapseSelectedEntry",
+      "j": "menu::SelectNext",
+      "k": "menu::SelectPrevious",
+      "l": "project_panel::ExpandSelectedEntry",
+      "o": "project_panel::Open",
+      "O": "workspace::Open",
+      "r": "projects::OpenRecent"
+    }
+  },
+  {
+    "context": "!Editor && !Terminal && !menu",
+    "bindings": {
+      "r": "projects::OpenRecent",
+      "O": "workspace::Open"
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "tab": "editor::ContextMenuNext",
+      "shift-tab": "editor::ContextMenuPrevious"
+    }
+  }
+]
