@@ -1,7 +1,9 @@
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
 
-require('opts')
-require('pluginmanager')
-require('vars')
-require('keys')
+require('configs')
+require('plugins')
+require('autocmds')
+require('lsp')
+require('keymaps')
+require('statusline')

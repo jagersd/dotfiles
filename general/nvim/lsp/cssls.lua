@@ -1,0 +1,6 @@
+---@type vim.lsp.Config
+return {
+    cmd = { 'vscode-css-language-server', '--stdio' },
+    filetypes = { 'css', 'less', 'scss' },
+    root_markers = { 'package.json', '.git' },
+}
