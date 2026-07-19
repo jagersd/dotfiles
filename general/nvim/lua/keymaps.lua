@@ -47,8 +47,19 @@ map('n', '<leader>pp', function()
         },
     })
 end, opts)
-map('n', '<leader>.', ':CopilotChat ', { noremap = true })
-map('n', '<leader>;', '<Cmd>CopilotChatToggle<CR>', opts)
-map('n', '<leader>:', '<Cmd>CopilotChatReset<CR>', opts)
+-- Chat Buffer
+vim.keymap.set('n', '<leader>.', ':CodeCompanionChat ', opts)
+vim.keymap.set('n', '<leader>;', '<Cmd>CodeCompanionChat Toggle<CR>', opts)
+vim.keymap.set('n', '<leader>:', '<Cmd>CodeCompanionChat Reset<CR>', opts)
+
+vim.keymap.set('n', '<leader>co', '<Cmd>CodeCompanionChat adapter=openrouter<CR>', opts)
+vim.keymap.set('n', '<leader>cp', '<Cmd>CodeCompanionChat adapter=copilot<CR>', opts)
+
+vim.keymap.set({ 'n', 'v' }, '<leader>ce', '<Cmd>CodeCompanion<CR>', opts)
+vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<Cmd>CodeCompanionActions<CR>', opts)
+
+map('n', '<leader>.', ':CodeCompanionChat ', { noremap = true })
+map('n', '<leader>;', '<Cmd>CodeCompanionChat Toggle<CR>', opts)
+map('n', '<leader>:', '<Cmd>CodeCompanionChat Reset<CR>', opts)
 
 map('i', '<C-c>', '<Esc>', opts)

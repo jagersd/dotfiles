@@ -25,7 +25,10 @@ vim.pack.add({
     { src = 'https://github.com/saadparwaiz1/cmp_luasnip' },
     { src = 'https://github.com/zbirenbaum/copilot.lua' },
     { src = 'https://github.com/zbirenbaum/copilot-cmp' },
-    { src = 'https://github.com/CopilotC-Nvim/CopilotChat.nvim' },
+    { src = 'https://github.com/franco-ruggeri/codecompanion-spinner.nvim' },
+    { src = 'https://github.com/olimorris/codecompanion.nvim', 
+        version = vim.version.range("^19.0.0"), 
+    },
     { src = 'https://github.com/ray-x/guihua.lua' },
     { src = 'https://github.com/ray-x/go.nvim' },
     { src = 'https://github.com/grafana/vim-alloy' },
@@ -121,21 +124,73 @@ require('nvim-autopairs').setup({})
 vim.env.NODE_NO_WARNINGS = '1'
 
 require('copilot').setup({
-    suggestion = { enabled = false },
+    suggestion = { enabled = true },
     panel = { enabled = false },
 })
 
 require('copilot_cmp').setup()
 
-require('CopilotChat').setup({
-    sticky = { '#buffer:active' },
-    debug = false,
-    show_help = false,
-    window = {
-        layout = 'vertical',
-        width = 0.4,
-        height = 0.5,
+require('codecompanion').setup({
+  display = {
+    chat = {
+      auto_scroll = true,
     },
+  },
+  extensions = {
+      spinner = {},
+  },
+  strategies = {
+    chat = {
+      adapter = 'copilot',
+      tools = {
+        opts = {
+          system_prompt = { enabled = true },
+        },
+      },
+    },
+    inline = {
+      adapter = 'copilot',
+    },
+  },
+  adapters = {
+    http = {
+      copilot = function()
+        return require('codecompanion.adapters').extend('copilot', {
+          schema = {
+            model = { default = 'gpt-4.1' },
+          },
+        })
+      end,
+
+      openrouter = function()
+        return require('codecompanion.adapters').extend('openai_compatible', {
+          name = 'openrouter',
+          formatted_name = 'OpenRouter',
+          env = {
+            url = 'https://openrouter.ai/api/v1',
+            api_key = 'OPENROUTER_API_KEY',
+            chat_url = '/chat/completions',
+          },
+          schema = {
+            model = {
+            default = 'openrouter/free',
+              choices = {
+                'openrouter/free',
+                'google/gemini-2.0-flash-exp:free',
+                'meta-llama/llama-3.3-70b-instruct:free',
+                'deepseek/deepseek-r1:free',
+                'qwen/qwen-2.5-coder-32b-instruct:free',
+                'mistralai/mistral-small-24b-instruct-2501:free',
+              },
+            },
+          },
+        })
+      end,
+      opts = {
+        show_model_choices = true,
+      }
+    },
+  },
 })
 
 require('go').setup()
