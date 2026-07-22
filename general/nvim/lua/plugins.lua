@@ -134,6 +134,8 @@ require('codecompanion').setup({
   display = {
     chat = {
       auto_scroll = true,
+      show_header_separator = true,
+      show_settings = true,
     },
   },
   extensions = {
@@ -151,13 +153,16 @@ require('codecompanion').setup({
     inline = {
       adapter = 'copilot',
     },
+    cmd = {
+      adapter = 'opencode',
+    },
   },
   adapters = {
     http = {
       copilot = function()
         return require('codecompanion.adapters').extend('copilot', {
           schema = {
-            model = { default = 'gpt-4.1' },
+            model = { default = 'GPT-5.4 mini' },
           },
         })
       end,
@@ -181,6 +186,30 @@ require('codecompanion').setup({
                 'deepseek/deepseek-r1:free',
                 'qwen/qwen-2.5-coder-32b-instruct:free',
                 'mistralai/mistral-small-24b-instruct-2501:free',
+              },
+            },
+          },
+        })
+      end,
+
+      opencode = function()
+        return require('codecompanion.adapters').extend('openai_compatible', {
+          name = 'opencode',
+          formatted_name = 'OpenCode Zen',
+          env = {
+            url = 'https://opencode.ai/zen/v1',
+            api_key = 'OPENCODE_ZEN_API_KEY',
+            chat_url = '/chat/completions',
+          },
+          schema = {
+            model = {
+              default = 'big-pickle',
+              choices = {
+                'big-pickle',
+                'deepseek-v4-flash-free',
+                'mimo-v2.5-free',
+                'north-mini-code-free',
+                'nemotron-3-ultra-free',
               },
             },
           },
@@ -237,6 +266,8 @@ cmp.setup({
         { name = 'buffer' },
     }),
 })
+
+require('nvim-treesitter').install { 'rust', 'go', 'python', 'yaml', 'bash', 'javascript' }
 
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
