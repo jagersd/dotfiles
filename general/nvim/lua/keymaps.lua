@@ -28,6 +28,8 @@ if ok_telescope then
     map('n', '<leader>fd', builtin.lsp_implementations, opts)
 end
 
+map('n', '<leader>tc', '<Cmd>CodeLensToggle<CR>', { desc = 'Toggle LSP code lens' })
+
 map('n', '<leader>c', '<Cmd>Gitsigns preview_hunk_inline<CR>', opts)
 map('n', '<leader>b', '<Cmd>Gitsigns blame_line<CR>', opts)
 
